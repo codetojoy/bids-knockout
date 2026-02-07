@@ -42,7 +42,10 @@
             </div>
             <!-- ko foreach: gamePlayers -->
             <div class="game-section player-section">
-                <h2 data-bind="text: name"></h2>
+                <h2>
+                    <span data-bind="text: name"></span>
+                    <span class="points" data-bind="text: '— ' + points() + ' pts'"></span>
+                </h2>
                 <div class="card-row">
                     <!-- ko foreach: hand -->
                     <button class="card-btn" data-bind="text: $data"></button>
@@ -50,7 +53,39 @@
                 </div>
             </div>
             <!-- /ko -->
+            <!-- ko with: humanPlayer -->
+            <div class="game-section human-section">
+                <h2>
+                    Your Hand
+                    <span class="points" data-bind="text: '— ' + points() + ' pts'"></span>
+                </h2>
+                <div class="card-row">
+                    <!-- ko foreach: hand -->
+                    <button class="card-btn clickable" data-bind="text: $data, click: $root.humanBid.bind($root, $data)"></button>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: roundResult() -->
+            <div class="round-result" data-bind="text: roundResult"></div>
+            <!-- /ko -->
+            <!-- ko if: gameOver() -->
+            <div class="game-over">
+                <h2>Game Over</h2>
+                <div data-bind="text: humanPlayer().name + ': ' + humanPlayer().points() + ' pts'"></div>
+                <!-- ko foreach: gamePlayers -->
+                <div data-bind="text: name + ': ' + points() + ' pts'"></div>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: gameOver() -->
+            <!-- ko ifnot: roundActive() -->
             <button class="go-btn" data-bind="click: $root.go">Go</button>
+            <!-- /ko -->
+            <!-- ko if: roundActive() -->
+            <span class="bid-prompt">Select a card from your hand to bid</span>
+            <!-- /ko -->
+            <!-- /ko -->
         </div>
         <!-- /ko -->
 
@@ -62,14 +97,14 @@
                 <input id="numCards" type="number" min="1" data-bind="value: numCardsInDeck">
             </div>
             <div class="form-group">
-                <label for="numPlayers">Number of Players</label>
-                <input id="numPlayers" type="number" min="1" data-bind="value: numPlayers">
+                <label for="numOpponents">Number of Opponents</label>
+                <input id="numOpponents" type="number" min="1" data-bind="value: numOpponents">
             </div>
             <div class="player-names">
-                <h2>Player Names</h2>
-                <!-- ko foreach: players -->
+                <h2>Opponent Names</h2>
+                <!-- ko foreach: opponents -->
                 <div class="form-group">
-                    <label data-bind="text: 'Player ' + ($index() + 1)"></label>
+                    <label data-bind="text: 'Opponent ' + ($index() + 1)"></label>
                     <input type="text" data-bind="value: name">
                 </div>
                 <!-- /ko -->

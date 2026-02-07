@@ -55,3 +55,17 @@ See @docs/Rules.md for the rules and example of the game.
     * also for now, a card can show its value, so the user can see the players' hands and the kitty
     * display a "prize area" where the next kitty card will go
     * display a "Go" button which simply logs click to the console
+
+### Phase 4: TODO list
+
+* COMPLETE: play one round of the game
+    * assume New Game button is clicked and cards are dealt
+    * place random card from the kitty into the current-prize area
+    * allow user to click on card in order to make a bid
+        * call other players to receive their bid, providing them with the value of the current kitty card
+        * evaluate bids and determine the winner of the current-prize card
+        * update display
+            * show points totals for all players
+            * display who won this round, with their winning bid and the value of the prize-card
+            * remove the cards played in this round from the display
+            * repeat the cycle by dealing a new card from the kitty into the prize-area

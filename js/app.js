@@ -2,44 +2,53 @@ function BidsViewModel() {
     const self = this;
 
     self.currentView = ko.observable("main");
-    self.numCardsInDeck = ko.observable(9);
-    self.numPlayers = ko.observable(2);
-    self.players = ko.observableArray([]);
+    self.numCardsInDeck = ko.observable(8);
+    self.numOpponents = ko.observable(1);
+    self.opponents = ko.observableArray([]);
     self.validationError = ko.observable("");
 
     self.kitty = ko.observableArray([]);
+    self.humanPlayer = ko.observable(null);
     self.gamePlayers = ko.observableArray([]);
     self.prizeCard = ko.observable(null);
+    self.roundActive = ko.observable(false);
+    self.roundResult = ko.observable(null);
+    self.gameOver = ko.observable(false);
 
     const defaultNames = ["Chopin", "Mozart"];
 
-    function buildPlayers(count) {
-        const current = self.players();
+    function buildOpponents(count) {
+        const current = self.opponents();
         if (count > current.length) {
             for (let i = current.length; i < count; i++) {
-                const defaultName = defaultNames[i] || ("Player " + (i + 1));
-                self.players.push({ name: ko.observable(defaultName) });
+                const defaultName = defaultNames[i] || ("Opponent " + (i + 1));
+                self.opponents.push({ name: ko.observable(defaultName) });
             }
         } else if (count < current.length) {
-            self.players.splice(count);
+            self.opponents.splice(count);
         }
     }
 
-    buildPlayers(self.numPlayers());
+    buildOpponents(self.numOpponents());
 
-    self.numPlayers.subscribe(function (val) {
+    self.numOpponents.subscribe(function (val) {
         const count = parseInt(val, 10);
         if (!isNaN(count) && count >= 0) {
-            buildPlayers(count);
+            buildOpponents(count);
         }
     });
+
+    function totalPlayers() {
+        return parseInt(self.numOpponents(), 10) + 1;
+    }
 
     self.newGame = function () {
         console.log("TRACER newGame clicked");
         const cards = parseInt(self.numCardsInDeck(), 10);
-        const players = parseInt(self.numPlayers(), 10);
+        const opponents = parseInt(self.numOpponents(), 10);
+        const players = opponents + 1;
 
-        if (isNaN(cards) || isNaN(players) || players < 1 || cards < 1) {
+        if (isNaN(cards) || isNaN(opponents) || opponents < 1 || cards < 1) {
             // guard
             return;
         }
@@ -55,19 +64,112 @@ function BidsViewModel() {
 
         self.kitty(deal.kitty);
         self.prizeCard(null);
+        self.roundActive(false);
+        self.roundResult(null);
+        self.gameOver(false);
 
-        const gamePlayerList = deal.hands.map(function (hand, i) {
-            const name = self.players()[i] ? self.players()[i].name() : ("Player " + (i + 1));
-            return { name: name, hand: ko.observableArray(hand) };
-        });
-        self.gamePlayers(gamePlayerList);
+        const human = {
+            name: "You",
+            hand: ko.observableArray(deal.hands[0]),
+            points: ko.observable(0),
+            isHuman: true
+        };
+        self.humanPlayer(human);
 
+        const opponentList = [];
+        for (let i = 1; i < players; i++) {
+            const name = self.opponents()[i - 1] ? self.opponents()[i - 1].name() : ("Opponent " + i);
+            opponentList.push({
+                name: name,
+                hand: ko.observableArray(deal.hands[i]),
+                points: ko.observable(0),
+                isHuman: false
+            });
+        }
+        self.gamePlayers(opponentList);
+
+        const allPlayers = [human].concat(opponentList);
         console.log("TRACER newGame: kitty=" + JSON.stringify(deal.kitty) +
-            " players=" + JSON.stringify(gamePlayerList.map(function (p) {
+            " players=" + JSON.stringify(allPlayers.map(function (p) {
                 return { name: p.name, hand: p.hand() };
             })));
 
         self.currentView("game");
+    };
+
+    self.go = function () {
+        console.log("TRACER go clicked");
+
+        if (self.kitty().length === 0) {
+            // guard
+            return;
+        }
+
+        const kittyCards = self.kitty();
+        const prize = kittyCards[0];
+        self.kitty(kittyCards.slice(1));
+        self.prizeCard(prize);
+        self.roundResult(null);
+        self.roundActive(true);
+
+        console.log("TRACER revealed prize card: " + prize);
+    };
+
+    self.humanBid = function (card) {
+        if (!self.roundActive()) {
+            // guard
+            return;
+        }
+
+        console.log("TRACER human bid: " + card);
+
+        const prize = self.prizeCard();
+        const human = self.humanPlayer();
+        const opponents = self.gamePlayers();
+        const allPlayers = [human].concat(opponents);
+        const bids = [];
+
+        bids.push({ playerIndex: 0, card: card });
+
+        opponents.forEach(function (player, i) {
+            const aiCard = selectBid(player.hand());
+            bids.push({ playerIndex: i + 1, card: aiCard });
+        });
+
+        console.log("TRACER bids: " + JSON.stringify(bids.map(function (b) {
+            return { player: allPlayers[b.playerIndex].name, card: b.card };
+        })));
+
+        const winnerBidIndex = evaluateRound(bids);
+        const winnerBid = bids[winnerBidIndex];
+        const winner = allPlayers[winnerBid.playerIndex];
+
+        winner.points(winner.points() + prize);
+
+        bids.forEach(function (bid) {
+            allPlayers[bid.playerIndex].hand.remove(bid.card);
+        });
+
+        const bidSummary = bids.map(function (b) {
+            return allPlayers[b.playerIndex].name + " bid " + b.card;
+        }).join(", ");
+
+        self.roundResult(winner.name + " wins with bid " + winnerBid.card +
+            ", earning " + prize + " pts (" + bidSummary + ")");
+
+        console.log("TRACER round result: " + self.roundResult());
+
+        self.roundActive(false);
+
+        if (self.kitty().length === 0) {
+            self.gameOver(true);
+            const standings = allPlayers.slice().sort(function (a, b) {
+                return b.points() - a.points();
+            });
+            console.log("TRACER game over: " + JSON.stringify(standings.map(function (p) {
+                return { name: p.name, points: p.points() };
+            })));
+        }
     };
 
     self.reveal = function () {
@@ -83,31 +185,28 @@ function BidsViewModel() {
     self.saveConfig = function () {
         console.log("TRACER saveConfig clicked");
         const cards = parseInt(self.numCardsInDeck(), 10);
-        const players = parseInt(self.numPlayers(), 10);
+        const opponents = parseInt(self.numOpponents(), 10);
+        const players = opponents + 1;
 
-        if (isNaN(cards) || isNaN(players) || players < 1 || cards < 1) {
-            self.validationError("Cards in deck and number of players must be positive numbers.");
+        if (isNaN(cards) || isNaN(opponents) || opponents < 1 || cards < 1) {
+            self.validationError("Cards in deck and number of opponents must be positive numbers.");
             return;
         }
 
         if (cards % (players + 1) !== 0) {
             self.validationError(
                 "Cards in deck (" + cards + ") must be evenly divisible by " +
-                "number of players + 1 for the kitty (" + (players + 1) + ")."
+                "total players + kitty (" + (players + 1) + ")."
             );
             return;
         }
 
-        const playerNames = self.players().map(function (p) { return p.name(); });
+        const opponentNames = self.opponents().map(function (p) { return p.name(); });
         console.log("TRACER config saved: numCardsInDeck=" + cards +
-            " numPlayers=" + players + " players=" + JSON.stringify(playerNames));
+            " numOpponents=" + opponents + " opponents=" + JSON.stringify(opponentNames));
 
         self.validationError("");
         self.currentView("main");
-    };
-
-    self.go = function () {
-        console.log("TRACER go clicked");
     };
 }
 

@@ -26,3 +26,18 @@ function dealCards(deck, numPlayers) {
     const kitty = deck.slice(numPlayers * handSize);
     return { hands: hands, kitty: kitty };
 }
+
+function selectBid(hand) {
+    const index = Math.floor(Math.random() * hand.length);
+    return hand[index];
+}
+
+function evaluateRound(bids) {
+    let winnerIndex = 0;
+    for (let i = 1; i < bids.length; i++) {
+        if (bids[i].card > bids[winnerIndex].card) {
+            winnerIndex = i;
+        }
+    }
+    return winnerIndex;
+}
