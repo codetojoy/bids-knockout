@@ -23,12 +23,12 @@ See @docs/Rules.md for the rules and example of the game.
 
 ### Phase 1: TODO list
 
-* TODO: create a initial webpage for the app
-* TODO: create a left nav on the page 
-* TODO: create a button "New Game" in left nav
+* COMPLETE: create a initial webpage for the app
+* COMPLETE: create a left nav on the page
+* COMPLETE: create a button "New Game" in left nav
     * for now, it just logs to the console
-* TODO: create a button "Reveal" in the left nav
+* COMPLETE: create a button "Reveal" in the left nav
     * for now, it just logs to the console
-* TODO: create a button "Config" in the left nav
+* COMPLETE: create a button "Config" in the left nav
     * for now, it just logs to the console
 
