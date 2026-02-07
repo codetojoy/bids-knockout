@@ -98,3 +98,73 @@ main h1 {
 .save-btn:hover {
     background-color: #2ecc71;
 }
+
+.game-board {
+    max-width: 600px;
+}
+
+.game-section {
+    margin-bottom: 20px;
+}
+
+.game-section h2 {
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.card-btn {
+    width: 48px;
+    height: 64px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: 2px solid #2c3e50;
+    border-radius: 6px;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    cursor: default;
+}
+
+.prize-area {
+    padding: 12px;
+    background-color: #fdf2e9;
+    border: 2px dashed #e67e22;
+    border-radius: 6px;
+}
+
+.prize-card {
+    border-color: #e67e22;
+    background-color: #fdebd0;
+}
+
+.prize-placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.player-section {
+    padding: 10px;
+    background-color: #eaf2f8;
+    border-radius: 6px;
+}
+
+.go-btn {
+    margin-top: 10px;
+    padding: 10px 32px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #8e44ad;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.go-btn:hover {
+    background-color: #9b59b6;
+}

@@ -43,3 +43,15 @@ See @docs/Rules.md for the rules and example of the game.
         * num-cards-in-deck % (num-players + 1) == 0
         * that is, we must be able to deal, evenly, the cards to the players plus the kitty
     * if valid, then return to the main display
+
+### Phase 3: TODO list
+
+* COMPLETE: on click for New Game button:
+    * confirm valid values for num-cards-in-deck
+    * shuffle the deck
+    * evenly distribute/deal the cards to the players and the kitty
+    * display the kitty and the players with their respective hand
+    * a card can be a simple button for now
+    * also for now, a card can show its value, so the user can see the players' hands and the kitty
+    * display a "prize area" where the next kitty card will go
+    * display a "Go" button which simply logs click to the console

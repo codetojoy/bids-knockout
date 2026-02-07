@@ -7,6 +7,10 @@ function BidsViewModel() {
     self.players = ko.observableArray([]);
     self.validationError = ko.observable("");
 
+    self.kitty = ko.observableArray([]);
+    self.gamePlayers = ko.observableArray([]);
+    self.prizeCard = ko.observable(null);
+
     const defaultNames = ["Chopin", "Mozart"];
 
     function buildPlayers(count) {
@@ -32,6 +36,38 @@ function BidsViewModel() {
 
     self.newGame = function () {
         console.log("TRACER newGame clicked");
+        const cards = parseInt(self.numCardsInDeck(), 10);
+        const players = parseInt(self.numPlayers(), 10);
+
+        if (isNaN(cards) || isNaN(players) || players < 1 || cards < 1) {
+            // guard
+            return;
+        }
+
+        if (cards % (players + 1) !== 0) {
+            // guard
+            return;
+        }
+
+        const deck = createDeck(cards);
+        const shuffled = shuffleDeck(deck);
+        const deal = dealCards(shuffled, players);
+
+        self.kitty(deal.kitty);
+        self.prizeCard(null);
+
+        const gamePlayerList = deal.hands.map(function (hand, i) {
+            const name = self.players()[i] ? self.players()[i].name() : ("Player " + (i + 1));
+            return { name: name, hand: ko.observableArray(hand) };
+        });
+        self.gamePlayers(gamePlayerList);
+
+        console.log("TRACER newGame: kitty=" + JSON.stringify(deal.kitty) +
+            " players=" + JSON.stringify(gamePlayerList.map(function (p) {
+                return { name: p.name, hand: p.hand() };
+            })));
+
+        self.currentView("game");
     };
 
     self.reveal = function () {
@@ -68,6 +104,10 @@ function BidsViewModel() {
 
         self.validationError("");
         self.currentView("main");
+    };
+
+    self.go = function () {
+        console.log("TRACER go clicked");
     };
 }
 
