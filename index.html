@@ -14,8 +14,37 @@
         <button data-bind="click: config">Config</button>
     </nav>
     <main>
-        <h1>Welcome to Bids</h1>
-        <p>Click "New Game" to start a game.</p>
+        <!-- ko if: currentView() === "main" -->
+        <div>
+            <h1>Welcome to Bids</h1>
+            <p>Click "New Game" to start a game.</p>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko if: currentView() === "config" -->
+        <div class="config-form">
+            <h1>Configuration</h1>
+            <div class="form-group">
+                <label for="numCards">Cards in Deck</label>
+                <input id="numCards" type="number" min="1" data-bind="value: numCardsInDeck">
+            </div>
+            <div class="form-group">
+                <label for="numPlayers">Number of Players</label>
+                <input id="numPlayers" type="number" min="1" data-bind="value: numPlayers">
+            </div>
+            <div class="player-names">
+                <h2>Player Names</h2>
+                <!-- ko foreach: players -->
+                <div class="form-group">
+                    <label data-bind="text: 'Player ' + ($index() + 1)"></label>
+                    <input type="text" data-bind="value: name">
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="validation-error" data-bind="visible: validationError(), text: validationError"></div>
+            <button class="save-btn" data-bind="click: saveConfig">Save</button>
+        </div>
+        <!-- /ko -->
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>

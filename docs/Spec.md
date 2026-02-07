@@ -32,3 +32,14 @@ See @docs/Rules.md for the rules and example of the game.
 * COMPLETE: create a button "Config" in the left nav
     * for now, it just logs to the console
 
+### Phase 2: TODO list
+
+* COMPLETE: on click for Config button, display a form which allows user to enter:
+    * num cards-in-deck
+    * num players
+    * configurable name for each player
+* COMPLETE: on Config display, create a "Save" button. When clicked:
+    * validate this:
+        * num-cards-in-deck % (num-players + 1) == 0
+        * that is, we must be able to deal, evenly, the cards to the players plus the kitty
+    * if valid, then return to the main display
