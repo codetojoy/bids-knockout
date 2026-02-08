@@ -51,9 +51,10 @@ Use the `code-style` skill. Key points:
 
 ## Skills
 
-Three review skills are defined in `.claude/skills/` and should be consulted for relevant work:
+Four skills are defined in `.claude/skills/` and should be consulted for relevant work:
 
 - **`architect`**: DRY, YAGNI, immutable state, unit tests are crucial, liberal logging, balance pragmatism with elegance
+- **`code-style`**: 4-space indentation, `const`/`let` over `var`, K&R braces, `TRACER ` log prefix, `// guard` comments, `// test` in unit tests
 - **`security-police`**: No hardcoded credentials, modern encryption, Apache 2.0 copyright headers on all source files, honor third-party licenses with attribution
 - **`ux-ui-police`**: 1980s retro styling, mobile + desktop with CSS breakpoints, ARIA accessibility, dark/light themes, tooltips on inputs, Playwright E2E tests
 
