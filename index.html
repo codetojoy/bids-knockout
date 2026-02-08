@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-    <nav>
+    <nav aria-label="Game controls">
         <h2>Bids</h2>
-        <button data-bind="click: newGame">New Game</button>
-        <button data-bind="click: reveal">Reveal</button>
-        <button data-bind="click: config">Config</button>
+        <button aria-label="Start a new game" data-bind="click: newGame">New Game</button>
+        <button aria-label="Reveal all hands" data-bind="click: reveal">Reveal</button>
+        <button aria-label="Open game configuration" data-bind="click: config">Config</button>
     </nav>
     <main>
         <!-- ko if: currentView() === "main" -->
@@ -37,7 +37,7 @@
         <!-- /ko -->
 
         <!-- ko if: currentView() === "game" -->
-        <div class="game-board">
+        <div class="game-board" role="region" aria-label="Game board">
             <div class="game-section">
                 <h2>Kitty</h2>
                 <div class="card-row">
@@ -46,10 +46,10 @@
                     <!-- /ko -->
                 </div>
             </div>
-            <div class="game-section prize-area">
+            <div class="game-section prize-area" aria-live="polite" aria-label="Prize card area">
                 <h2>Prize</h2>
                 <!-- ko if: prizeCard() !== null -->
-                <button class="card-btn prize-card" data-bind="text: prizeCard"></button>
+                <button class="card-btn prize-card" data-bind="text: prizeCard, attr: { 'aria-label': 'Prize card: ' + prizeCard() }"></button>
                 <!-- /ko -->
                 <!-- ko if: prizeCard() === null -->
                 <span class="prize-placeholder">Prize card will appear here</span>
@@ -76,16 +76,16 @@
                 </h2>
                 <div class="card-row">
                     <!-- ko foreach: hand -->
-                    <button class="card-btn clickable" data-bind="text: $data, click: $root.humanBid.bind($root, $data)"></button>
+                    <button class="card-btn clickable" data-bind="text: $data, click: $root.humanBid.bind($root, $data), attr: { 'aria-label': 'Bid card ' + $data }"></button>
                     <!-- /ko -->
                 </div>
             </div>
             <!-- /ko -->
             <!-- ko if: roundResult() -->
-            <div class="round-result" data-bind="text: roundResult"></div>
+            <div class="round-result" aria-live="assertive" data-bind="text: roundResult"></div>
             <!-- /ko -->
             <!-- ko if: gameOver() -->
-            <div class="game-over">
+            <div class="game-over" aria-live="assertive">
                 <h2>Game Over</h2>
                 <div data-bind="text: humanPlayer().name + ': ' + humanPlayer().points() + ' pts'"></div>
                 <!-- ko foreach: gamePlayers -->
@@ -95,10 +95,10 @@
             <!-- /ko -->
             <!-- ko ifnot: gameOver() -->
             <!-- ko ifnot: roundActive() -->
-            <button class="go-btn" data-bind="click: $root.go">Go</button>
+            <button class="go-btn" aria-label="Reveal next prize card" data-bind="click: $root.go">Go</button>
             <!-- /ko -->
             <!-- ko if: roundActive() -->
-            <span class="bid-prompt">Select a card from your hand to bid</span>
+            <span class="bid-prompt" aria-live="polite">Select a card from your hand to bid</span>
             <!-- /ko -->
             <!-- /ko -->
         </div>
@@ -126,8 +126,8 @@
                 </div>
                 <!-- /ko -->
             </div>
-            <div class="validation-error" data-bind="visible: validationError(), text: validationError"></div>
-            <button class="save-btn" data-bind="click: saveConfig">Save</button>
+            <div class="validation-error" role="alert" data-bind="visible: validationError(), text: validationError"></div>
+            <button class="save-btn" aria-label="Save configuration" data-bind="click: saveConfig">Save</button>
         </div>
         <!-- /ko -->
     </main>

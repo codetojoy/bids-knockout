@@ -241,3 +241,67 @@ main h1 {
     outline: 3px solid #2980b9;
     outline-offset: 2px;
 }
+
+/* --- Responsive: tablet and below --- */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 10px 16px;
+    }
+
+    nav h2 {
+        margin-bottom: 0;
+        margin-right: auto;
+    }
+
+    nav button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    main {
+        padding: 16px;
+    }
+
+    .game-board {
+        max-width: 100%;
+    }
+
+    .config-form {
+        max-width: 100%;
+    }
+}
+
+/* --- Responsive: small phones --- */
+@media (max-width: 480px) {
+    nav {
+        gap: 6px;
+        padding: 8px 12px;
+    }
+
+    nav button {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .card-btn {
+        width: 40px;
+        height: 54px;
+        font-size: 1em;
+    }
+
+    .go-btn {
+        width: 100%;
+    }
+
+    .save-btn {
+        width: 100%;
+    }
+}

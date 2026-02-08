@@ -205,8 +205,8 @@ function BidsViewModel() {
         }
 
         const opponentNames = self.opponents().map(function (p) { return p.name(); });
-        console.log("TRACER config saved: numCardsInDeck=" + cards +
-            " numOpponents=" + opponents + " opponents=" + JSON.stringify(opponentNames));
+        console.log("TRACER config saved: numCardsInDeck=" + self.numCardsInDeck() +
+            " numOpponents=" + self.numOpponents() + " opponents=" + JSON.stringify(opponentNames));
 
         self.validationError("");
         self.currentView("main");

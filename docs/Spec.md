@@ -87,8 +87,8 @@ See @docs/GameRules.md for the rules and example of the game.
 
 ### Phase 7: TODO list (Accessibility & Responsiveness)
 
-* add ARIA attributes: labels on buttons, `aria-live` on game status regions, `role="alert"` on error messages
-* add CSS media queries and responsive breakpoints for mobile
+* COMPLETE: add ARIA attributes: labels on buttons, `aria-live` on game status regions, `role="alert"` on error messages
+* COMPLETE: add CSS media queries and responsive breakpoints for mobile
 
 ### Phase 8: TODO list (Theming)
 
