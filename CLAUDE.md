@@ -18,7 +18,10 @@ python3 -m http.server
 
 ## Testing
 
-Use Jasmine for unit tests on game logic (domain objects, strategies, etc.).
+Use Jasmine 5.11.0 (CDN, no npm) for unit tests on game logic. See `docs/Test.md` for runner instructions.
+
+- Test runner: `tests/SpecRunner.html` (open in browser via HTTP server)
+- Spec files: `tests/game.spec.js` (covers `createDeck`, `shuffleDeck`, `dealCards`, `selectBid`, `evaluateRound`, `validateGameConfig`)
 
 ## Architecture
 
@@ -56,15 +59,19 @@ Three review skills are defined in `.claude/skills/` and should be consulted for
 
 ## Current Status
 
-Phases 1-4 are complete (basic UI, config, dealing, one round of play). See `docs/Spec.md` for the full phase list.
+Phases 1-7 are complete. See `docs/Spec.md` for the full phase list.
 
-### Milestone Review Findings (Post Phase 4)
+### What's Done
 
-A cross-cutting review identified these gaps, now tracked as phases 5-10 in `docs/Spec.md`:
+- **Phase 5** (Compliance): Copyright headers, SRI hashes, third-party attribution, tooltips, `:focus-visible`, broken link fix
+- **Phase 6** (Testing): Jasmine test suite (20 specs), `validateGameConfig()` extracted to `game.js` to eliminate DRY violation, `docs/Test.md`
+- **Phase 7** (Accessibility & Responsiveness): ARIA attributes (`aria-label`, `aria-live`, `role="alert"`), responsive CSS breakpoints (768px, 480px)
 
-- **Security**: Missing copyright headers, SRI hashes on CDN scripts, third-party attribution
-- **UX/UI**: No ARIA attributes, no responsive breakpoints, no dark/light theme, no retro styling, no tooltips, no `:focus-visible` styles
-- **Architecture**: Zero test coverage (Jasmine spec'd but not set up), DRY violation in validation logic (`newGame`/`saveConfig`), only 1 of 4 AI strategies implemented, `reveal()` is a stub
+### What Remains
+
+- **Phase 8**: CSS custom properties, dark/light theme, 1980s retro aesthetic
+- **Phase 9**: Remaining AI strategies (max, min, nearest), `reveal()` implementation
+- **Phase 10**: Playwright E2E tests
 
 ## Hooks
 
