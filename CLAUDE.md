@@ -46,6 +46,26 @@ Use the `code-style` skill. Key points:
 - Guard clauses commented with `// guard`
 - Unit tests: use single `// test` comment before the act step (no arrange/act/assert)
 
+## Skills
+
+Three review skills are defined in `.claude/skills/` and should be consulted for relevant work:
+
+- **`architect`**: DRY, YAGNI, immutable state, unit tests are crucial, liberal logging, balance pragmatism with elegance
+- **`security-police`**: No hardcoded credentials, modern encryption, Apache 2.0 copyright headers on all source files, honor third-party licenses with attribution
+- **`ux-ui-police`**: 1980s retro styling, mobile + desktop with CSS breakpoints, ARIA accessibility, dark/light themes, tooltips on inputs, Playwright E2E tests
+
+## Current Status
+
+Phases 1-4 are complete (basic UI, config, dealing, one round of play). See `docs/Spec.md` for the full phase list.
+
+### Milestone Review Findings (Post Phase 4)
+
+A cross-cutting review identified these gaps, now tracked as phases 5-10 in `docs/Spec.md`:
+
+- **Security**: Missing copyright headers, SRI hashes on CDN scripts, third-party attribution
+- **UX/UI**: No ARIA attributes, no responsive breakpoints, no dark/light theme, no retro styling, no tooltips, no `:focus-visible` styles
+- **Architecture**: Zero test coverage (Jasmine spec'd but not set up), DRY violation in validation logic (`newGame`/`saveConfig`), only 1 of 4 AI strategies implemented, `reveal()` is a stub
+
 ## Hooks
 
 A PostToolUse hook runs `./resources/my-edit-logger.sh` after Edit/Write operations, logging file changes to `./resources/files-audit.log` (gitignored).

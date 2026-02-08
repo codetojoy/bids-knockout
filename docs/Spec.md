@@ -69,3 +69,37 @@ See @docs/Rules.md for the rules and example of the game.
             * display who won this round, with their winning bid and the value of the prize-card
             * remove the cards played in this round from the display
             * repeat the cycle by dealing a new card from the kitty into the prize-area
+
+### Phase 5: TODO list (Compliance & Quick Wins)
+
+* add Apache 2.0 copyright headers to all source files (`index.html`, `app.js`, `game.js`, `app.css`)
+* add SRI integrity hashes to CDN script tags for jQuery and Knockout
+* add third-party attribution for jQuery (MIT) and Knockout (MIT)
+* add tooltips (`title` attributes) to input fields
+* add `:focus-visible` styles for keyboard navigation
+* fix broken README link: `Rules.md` should be `GameRules.md`
+
+### Phase 6: TODO list (Testing)
+
+* set up Jasmine test runner and spec files for `game.js` functions (`createDeck`, `shuffleDeck`, `dealCards`, `selectBid`, `evaluateRound`)
+* extract shared validation logic from `newGame()` and `saveConfig()` to eliminate DRY violation
+
+### Phase 7: TODO list (Accessibility & Responsiveness)
+
+* add ARIA attributes: labels on buttons, `aria-live` on game status regions, `role="alert"` on error messages
+* add CSS media queries and responsive breakpoints for mobile
+
+### Phase 8: TODO list (Theming)
+
+* refactor hardcoded colors to CSS custom properties
+* add dark/light theme support with `prefers-color-scheme` and a manual toggle
+* apply 1980s retro aesthetic: pixel/monospace fonts, CRT glow effects, retro color palette
+
+### Phase 9: TODO list (Game Features)
+
+* implement remaining AI strategies: max, min, nearest
+* implement the `reveal()` function
+
+### Phase 10: TODO list (E2E Tests)
+
+* add Playwright tests for core user flows
