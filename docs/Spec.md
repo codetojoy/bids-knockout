@@ -81,8 +81,9 @@ See @docs/GameRules.md for the rules and example of the game.
 
 ### Phase 6: TODO list (Testing)
 
-* set up Jasmine test runner and spec files for `game.js` functions (`createDeck`, `shuffleDeck`, `dealCards`, `selectBid`, `evaluateRound`)
-* extract shared validation logic from `newGame()` and `saveConfig()` to eliminate DRY violation
+* COMPLETE: set up Jasmine test runner and spec files for `game.js` functions (`createDeck`, `shuffleDeck`, `dealCards`, `selectBid`, `evaluateRound`)
+* COMPLETE: extract shared validation logic from `newGame()` and `saveConfig()` to eliminate DRY violation
+* COMPLETE: create `./docs/Test.md` with test runner instructions
 
 ### Phase 7: TODO list (Accessibility & Responsiveness)
 

@@ -48,6 +48,26 @@ function selectBid(hand) {
     return hand[index];
 }
 
+function validateGameConfig(numCards, numOpponents) {
+    const cards = parseInt(numCards, 10);
+    const opponents = parseInt(numOpponents, 10);
+    const players = opponents + 1;
+
+    if (isNaN(cards) || isNaN(opponents) || opponents < 1 || cards < 1) {
+        return { valid: false, error: "Cards in deck and number of opponents must be positive numbers." };
+    }
+
+    if (cards % (players + 1) !== 0) {
+        return {
+            valid: false,
+            error: "Cards in deck (" + cards + ") must be evenly divisible by " +
+                "total players + kitty (" + (players + 1) + ")."
+        };
+    }
+
+    return { valid: true, error: "" };
+}
+
 function evaluateRound(bids) {
     let winnerIndex = 0;
     for (let i = 1; i < bids.length; i++) {

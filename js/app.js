@@ -60,19 +60,16 @@ function BidsViewModel() {
 
     self.newGame = function () {
         console.log("TRACER newGame clicked");
+        const result = validateGameConfig(self.numCardsInDeck(), self.numOpponents());
+
+        if (!result.valid) {
+            // guard
+            return;
+        }
+
         const cards = parseInt(self.numCardsInDeck(), 10);
         const opponents = parseInt(self.numOpponents(), 10);
         const players = opponents + 1;
-
-        if (isNaN(cards) || isNaN(opponents) || opponents < 1 || cards < 1) {
-            // guard
-            return;
-        }
-
-        if (cards % (players + 1) !== 0) {
-            // guard
-            return;
-        }
 
         const deck = createDeck(cards);
         const shuffled = shuffleDeck(deck);
@@ -200,20 +197,10 @@ function BidsViewModel() {
 
     self.saveConfig = function () {
         console.log("TRACER saveConfig clicked");
-        const cards = parseInt(self.numCardsInDeck(), 10);
-        const opponents = parseInt(self.numOpponents(), 10);
-        const players = opponents + 1;
+        const result = validateGameConfig(self.numCardsInDeck(), self.numOpponents());
 
-        if (isNaN(cards) || isNaN(opponents) || opponents < 1 || cards < 1) {
-            self.validationError("Cards in deck and number of opponents must be positive numbers.");
-            return;
-        }
-
-        if (cards % (players + 1) !== 0) {
-            self.validationError(
-                "Cards in deck (" + cards + ") must be evenly divisible by " +
-                "total players + kitty (" + (players + 1) + ")."
-            );
+        if (!result.valid) {
+            self.validationError(result.error);
             return;
         }
 
