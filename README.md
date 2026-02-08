@@ -2,7 +2,7 @@
 
 A simple card game, Bids, using Javascript and Knockout JS.
 
-See [Spec](./docs/Spec.md) and [Rules](./docs/Rules.md).
+See [Spec](./docs/Spec.md) and [Rules](./docs/GameRules.md).
 
 * Other versions:
     * A version in Angular 1 is [here](https://github.com/codetojoy/bids_ng1).

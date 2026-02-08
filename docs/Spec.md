@@ -9,7 +9,7 @@ This is a simple app, called "Bids", in SPA web page that allows a human to play
 
 ### Rules
 
-See @docs/Rules.md for the rules and example of the game.
+See @docs/GameRules.md for the rules and example of the game.
 
 ### Technical Specs
 
@@ -72,12 +72,12 @@ See @docs/Rules.md for the rules and example of the game.
 
 ### Phase 5: TODO list (Compliance & Quick Wins)
 
-* add Apache 2.0 copyright headers to all source files (`index.html`, `app.js`, `game.js`, `app.css`)
-* add SRI integrity hashes to CDN script tags for jQuery and Knockout
-* add third-party attribution for jQuery (MIT) and Knockout (MIT)
-* add tooltips (`title` attributes) to input fields
-* add `:focus-visible` styles for keyboard navigation
-* fix broken README link: `Rules.md` should be `GameRules.md`
+* COMPLETE: add Apache 2.0 copyright headers to all source files (`index.html`, `app.js`, `game.js`, `app.css`)
+* COMPLETE: add SRI integrity hashes to CDN script tags for jQuery and Knockout
+* COMPLETE: add third-party attribution for jQuery (MIT) and Knockout (MIT)
+* COMPLETE: add tooltips (`title` attributes) to input fields
+* COMPLETE: add `:focus-visible` styles for keyboard navigation
+* COMPLETE: fix broken README link: `Rules.md` should be `GameRules.md`
 
 ### Phase 6: TODO list (Testing)
 
