@@ -30,6 +30,7 @@ function BidsViewModel() {
     self.roundActive = ko.observable(false);
     self.roundResult = ko.observable(null);
     self.gameOver = ko.observable(false);
+    self.finalStandings = ko.observableArray([]);
 
     const defaultNames = ["Mozart", "Chopin", "Brahms"];
 
@@ -82,10 +83,13 @@ function BidsViewModel() {
         self.roundResult(null);
         self.gameOver(false);
 
+        self.finalStandings([]);
+
         const human = {
             name: "You",
             hand: ko.observableArray(deal.hands[0]),
             points: ko.observable(0),
+            roundsWon: ko.observable(0),
             isHuman: true
         };
         self.humanPlayer(human);
@@ -97,6 +101,7 @@ function BidsViewModel() {
                 name: name,
                 hand: ko.observableArray(deal.hands[i]),
                 points: ko.observable(0),
+                roundsWon: ko.observable(0),
                 isHuman: false
             });
         }
@@ -159,6 +164,7 @@ function BidsViewModel() {
         const winner = allPlayers[winnerBid.playerIndex];
 
         winner.points(winner.points() + prize);
+        winner.roundsWon(winner.roundsWon() + 1);
 
         bids.forEach(function (bid) {
             allPlayers[bid.playerIndex].hand.remove(bid.card);
@@ -180,9 +186,10 @@ function BidsViewModel() {
             const standings = allPlayers.slice().sort(function (a, b) {
                 return b.points() - a.points();
             });
-            console.log("TRACER game over: " + JSON.stringify(standings.map(function (p) {
-                return { name: p.name, points: p.points() };
-            })));
+            self.finalStandings(standings.map(function (p) {
+                return { name: p.name, points: p.points(), roundsWon: p.roundsWon() };
+            }));
+            console.log("TRACER game over: " + JSON.stringify(self.finalStandings()));
         }
     };
 

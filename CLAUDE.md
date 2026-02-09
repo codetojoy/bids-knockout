@@ -60,7 +60,7 @@ Four skills are defined in `.claude/skills/` and should be consulted for relevan
 
 ## Current Status
 
-Phases 1-8 are complete. See `docs/Spec.md` for the full phase list.
+Phases 1-9 are complete. See `docs/Spec.md` for the full phase list.
 
 ### What's Done
 
@@ -68,12 +68,13 @@ Phases 1-8 are complete. See `docs/Spec.md` for the full phase list.
 - **Phase 6** (Testing): Jasmine test suite (19 specs), `validateGameConfig()` extracted to `game.js` to eliminate DRY violation, `docs/Test.md`
 - **Phase 7** (Config Refactoring): Config form uses "cards per hand" instead of "cards in deck"; deck size computed automatically; default 3 opponents (Mozart, Chopin, Brahms)
 - **Phase 8** (Accessibility & Responsiveness): ARIA attributes (`aria-label`, `aria-live`, `role="alert"`), responsive CSS breakpoints (768px, 480px)
+- **Phase 9** (Game Play): Game-over screen declares winner with points and rounds won; final standings for all players sorted by points; `roundsWon` tracking added to player objects
 
 ### What Remains
 
-- **Phase 9**: CSS custom properties, dark/light theme, 1980s retro aesthetic
-- **Phase 10**: Remaining AI strategies (max, min, nearest), `reveal()` implementation
-- **Phase 11**: Playwright E2E tests
+- **Phase TBA**: CSS custom properties, dark/light theme, 1980s retro aesthetic
+- **Phase TBD**: Remaining AI strategies (max, min, nearest), `reveal()` implementation
+- **Phase TBA**: Playwright E2E tests
 
 ## Hooks
 

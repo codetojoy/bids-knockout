@@ -229,6 +229,26 @@ main h1 {
     margin-bottom: 8px;
 }
 
+.game-over h3 {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 1em;
+}
+
+.winner-announcement {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #d35400;
+}
+
+.standing-row {
+    padding: 4px 0;
+}
+
+.winner-row {
+    font-weight: bold;
+}
+
 .bid-prompt {
     display: inline-block;
     margin-top: 12px;

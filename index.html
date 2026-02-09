@@ -87,9 +87,15 @@
             <!-- ko if: gameOver() -->
             <div class="game-over" aria-live="assertive">
                 <h2>Game Over</h2>
-                <div data-bind="text: humanPlayer().name + ': ' + humanPlayer().points() + ' pts'"></div>
-                <!-- ko foreach: gamePlayers -->
-                <div data-bind="text: name + ': ' + points() + ' pts'"></div>
+                <!-- ko with: finalStandings()[0] -->
+                <div class="winner-announcement" data-bind="text: name + ' wins with ' + points + ' pts and ' + roundsWon + ' rounds won!'"></div>
+                <!-- /ko -->
+                <h3>Final Standings</h3>
+                <!-- ko foreach: finalStandings -->
+                <div class="standing-row" data-bind="css: { 'winner-row': $index() === 0 }">
+                    <span data-bind="text: ($index() + 1) + '. ' + name"></span>
+                    <span data-bind="text: ' — ' + points + ' pts, ' + roundsWon + ' rounds won'"></span>
+                </div>
                 <!-- /ko -->
             </div>
             <!-- /ko -->

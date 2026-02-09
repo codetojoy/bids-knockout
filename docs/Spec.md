@@ -96,17 +96,23 @@ See @docs/GameRules.md for the rules and example of the game.
 * COMPLETE: add ARIA attributes: labels on buttons, `aria-live` on game status regions, `role="alert"` on error messages
 * COMPLETE: add CSS media queries and responsive breakpoints for mobile
 
-### Phase 9: TODO list (Theming)
+### Phase 9: TODO list (game play)
+
+* COMPLETE: After last round is played, display a section declaring the winner, along with total points and number of rounds won.
+* COMPLETE: Also list the other players with their respective points and number of rounds won.
+* COMPLETE: Since "number of rounds won" is new, introduce this into the rest of the code where necessary (for tracking).
+
+### Phase TBA: TODO list (Theming)
 
 * refactor hardcoded colors to CSS custom properties
 * add dark/light theme support with `prefers-color-scheme` and a manual toggle
 * apply 1980s retro aesthetic: pixel/monospace fonts, CRT glow effects, retro color palette
 
-### Phase 10: TODO list (Game Features)
+### Phase TBD: TODO list (Game Features)
 
 * implement remaining AI strategies: max, min, nearest
 * implement the `reveal()` function
 
-### Phase 11: TODO list (E2E Tests)
+### Phase TBA: TODO list (E2E Tests)
 
 * add Playwright tests for core user flows
