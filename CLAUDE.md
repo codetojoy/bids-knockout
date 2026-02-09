@@ -60,19 +60,20 @@ Four skills are defined in `.claude/skills/` and should be consulted for relevan
 
 ## Current Status
 
-Phases 1-7 are complete. See `docs/Spec.md` for the full phase list.
+Phases 1-8 are complete. See `docs/Spec.md` for the full phase list.
 
 ### What's Done
 
 - **Phase 5** (Compliance): Copyright headers, SRI hashes, third-party attribution, tooltips, `:focus-visible`, broken link fix
-- **Phase 6** (Testing): Jasmine test suite (20 specs), `validateGameConfig()` extracted to `game.js` to eliminate DRY violation, `docs/Test.md`
-- **Phase 7** (Accessibility & Responsiveness): ARIA attributes (`aria-label`, `aria-live`, `role="alert"`), responsive CSS breakpoints (768px, 480px)
+- **Phase 6** (Testing): Jasmine test suite (19 specs), `validateGameConfig()` extracted to `game.js` to eliminate DRY violation, `docs/Test.md`
+- **Phase 7** (Config Refactoring): Config form uses "cards per hand" instead of "cards in deck"; deck size computed automatically; default 3 opponents (Mozart, Chopin, Brahms)
+- **Phase 8** (Accessibility & Responsiveness): ARIA attributes (`aria-label`, `aria-live`, `role="alert"`), responsive CSS breakpoints (768px, 480px)
 
 ### What Remains
 
-- **Phase 8**: CSS custom properties, dark/light theme, 1980s retro aesthetic
-- **Phase 9**: Remaining AI strategies (max, min, nearest), `reveal()` implementation
-- **Phase 10**: Playwright E2E tests
+- **Phase 9**: CSS custom properties, dark/light theme, 1980s retro aesthetic
+- **Phase 10**: Remaining AI strategies (max, min, nearest), `reveal()` implementation
+- **Phase 11**: Playwright E2E tests
 
 ## Hooks
 

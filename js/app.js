@@ -18,8 +18,8 @@ function BidsViewModel() {
     const self = this;
 
     self.currentView = ko.observable("main");
-    self.numCardsInDeck = ko.observable(8);
-    self.numOpponents = ko.observable(1);
+    self.numCardsPerHand = ko.observable(4);
+    self.numOpponents = ko.observable(3);
     self.opponents = ko.observableArray([]);
     self.validationError = ko.observable("");
 
@@ -31,7 +31,7 @@ function BidsViewModel() {
     self.roundResult = ko.observable(null);
     self.gameOver = ko.observable(false);
 
-    const defaultNames = ["Chopin", "Mozart"];
+    const defaultNames = ["Mozart", "Chopin", "Brahms"];
 
     function buildOpponents(count) {
         const current = self.opponents();
@@ -60,16 +60,17 @@ function BidsViewModel() {
 
     self.newGame = function () {
         console.log("TRACER newGame clicked");
-        const result = validateGameConfig(self.numCardsInDeck(), self.numOpponents());
+        const result = validateGameConfig(self.numCardsPerHand(), self.numOpponents());
 
         if (!result.valid) {
             // guard
             return;
         }
 
-        const cards = parseInt(self.numCardsInDeck(), 10);
+        const cardsPerHand = parseInt(self.numCardsPerHand(), 10);
         const opponents = parseInt(self.numOpponents(), 10);
         const players = opponents + 1;
+        const cards = cardsPerHand * (players + 1);
 
         const deck = createDeck(cards);
         const shuffled = shuffleDeck(deck);
@@ -197,7 +198,7 @@ function BidsViewModel() {
 
     self.saveConfig = function () {
         console.log("TRACER saveConfig clicked");
-        const result = validateGameConfig(self.numCardsInDeck(), self.numOpponents());
+        const result = validateGameConfig(self.numCardsPerHand(), self.numOpponents());
 
         if (!result.valid) {
             self.validationError(result.error);
@@ -205,7 +206,7 @@ function BidsViewModel() {
         }
 
         const opponentNames = self.opponents().map(function (p) { return p.name(); });
-        console.log("TRACER config saved: numCardsInDeck=" + self.numCardsInDeck() +
+        console.log("TRACER config saved: numCardsPerHand=" + self.numCardsPerHand() +
             " numOpponents=" + self.numOpponents() + " opponents=" + JSON.stringify(opponentNames));
 
         self.validationError("");

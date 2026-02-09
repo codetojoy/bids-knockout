@@ -85,22 +85,28 @@ See @docs/GameRules.md for the rules and example of the game.
 * COMPLETE: extract shared validation logic from `newGame()` and `saveConfig()` to eliminate DRY violation
 * COMPLETE: create `./docs/Test.md` with test runner instructions
 
-### Phase 7: TODO list (Accessibility & Responsiveness)
+### Phase 7: TODO list
+
+* COMPLETE: refactor Config form to have "number of cards per hand" rather than "number of cards in deck"
+* COMPLETE: refactor JS code to compute "number of cards in deck" as the multiple of "number of cards per hand" (where multiple is clearly num-players + 1 for kitty)
+* COMPLETE: refactor Config initial state so that there are 3 automated players with names Mozart, Chopin, and Brahms
+
+### Phase 8: TODO list (Accessibility & Responsiveness)
 
 * COMPLETE: add ARIA attributes: labels on buttons, `aria-live` on game status regions, `role="alert"` on error messages
 * COMPLETE: add CSS media queries and responsive breakpoints for mobile
 
-### Phase 8: TODO list (Theming)
+### Phase 9: TODO list (Theming)
 
 * refactor hardcoded colors to CSS custom properties
 * add dark/light theme support with `prefers-color-scheme` and a manual toggle
 * apply 1980s retro aesthetic: pixel/monospace fonts, CRT glow effects, retro color palette
 
-### Phase 9: TODO list (Game Features)
+### Phase 10: TODO list (Game Features)
 
 * implement remaining AI strategies: max, min, nearest
 * implement the `reveal()` function
 
-### Phase 10: TODO list (E2E Tests)
+### Phase 11: TODO list (E2E Tests)
 
 * add Playwright tests for core user flows
