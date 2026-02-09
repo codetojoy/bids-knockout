@@ -25,7 +25,7 @@
     <nav aria-label="Game controls">
         <h2>Bids</h2>
         <button aria-label="Start a new game" data-bind="click: newGame">New Game</button>
-        <button aria-label="Reveal all hands" data-bind="click: reveal">Reveal</button>
+        <button data-bind="click: reveal, text: revealButtonText, attr: { 'aria-label': revealed() ? 'Hide all hands' : 'Reveal all hands' }"></button>
         <button aria-label="Open game configuration" data-bind="click: config">Config</button>
     </nav>
     <main>
@@ -42,7 +42,7 @@
                 <h2>Kitty</h2>
                 <div class="card-row">
                     <!-- ko foreach: kitty -->
-                    <button class="card-btn" data-bind="text: $data"></button>
+                    <button class="card-btn" data-bind="text: $root.revealed() ? $data : '', css: { 'hidden-card': !$root.revealed() }"></button>
                     <!-- /ko -->
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 </h2>
                 <div class="card-row">
                     <!-- ko foreach: hand -->
-                    <button class="card-btn" data-bind="text: $data"></button>
+                    <button class="card-btn" data-bind="text: $root.revealed() ? $data : '', css: { 'hidden-card': !$root.revealed() }"></button>
                     <!-- /ko -->
                 </div>
             </div>

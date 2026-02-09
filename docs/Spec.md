@@ -102,6 +102,13 @@ See @docs/GameRules.md for the rules and example of the game.
 * COMPLETE: Also list the other players with their respective points and number of rounds won.
 * COMPLETE: Since "number of rounds won" is new, introduce this into the rest of the code where necessary (for tracking).
 
+### Phase 10: TODO list
+
+* COMPLETE: For initial state of the game, alter the UI so that the card values of the kitty and hands of automated players are hidden. For now the cards can simply be solid colors.
+* COMPLETE: Of course, the current prize card and human user's hand is always viewable.
+* COMPLETE: If Reveal button is clicked, then display all card values and change the Reveal button text to "Hide".
+* COMPLETE: If Reveal button is in Hide mode and clicked, then hide card values according to the original rule above (kitty, hands of automated players).
+
 ### Phase TBA: TODO list (Theming)
 
 * refactor hardcoded colors to CSS custom properties

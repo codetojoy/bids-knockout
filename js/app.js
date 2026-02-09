@@ -31,6 +31,10 @@ function BidsViewModel() {
     self.roundResult = ko.observable(null);
     self.gameOver = ko.observable(false);
     self.finalStandings = ko.observableArray([]);
+    self.revealed = ko.observable(false);
+    self.revealButtonText = ko.computed(function () {
+        return self.revealed() ? "Hide" : "Reveal";
+    });
 
     const defaultNames = ["Mozart", "Chopin", "Brahms"];
 
@@ -82,6 +86,7 @@ function BidsViewModel() {
         self.roundActive(false);
         self.roundResult(null);
         self.gameOver(false);
+        self.revealed(false);
 
         self.finalStandings([]);
 
@@ -194,7 +199,8 @@ function BidsViewModel() {
     };
 
     self.reveal = function () {
-        console.log("TRACER reveal clicked");
+        console.log("TRACER reveal clicked, was: " + self.revealed());
+        self.revealed(!self.revealed());
     };
 
     self.config = function () {
