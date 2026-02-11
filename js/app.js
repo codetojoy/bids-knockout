@@ -36,6 +36,20 @@ function BidsViewModel() {
         return self.revealed() ? "Hide" : "Reveal";
     });
 
+    const storedTheme = localStorage.getItem("bids-theme");
+    const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialDark = storedTheme ? storedTheme === "dark" : systemPrefersDark;
+
+    self.darkMode = ko.observable(initialDark);
+    document.documentElement.setAttribute("data-theme", initialDark ? "dark" : "light");
+
+    self.darkMode.subscribe(function (isDark) {
+        const themeName = isDark ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", themeName);
+        localStorage.setItem("bids-theme", themeName);
+        console.log("TRACER theme changed to: " + themeName);
+    });
+
     const defaultNames = ["Mozart", "Chopin", "Brahms"];
     const defaultStrategies = ["max", "min", "nearest"];
     self.availableStrategies = ["max", "min", "nearest", "random"];

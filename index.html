@@ -20,6 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bids</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -114,6 +117,12 @@
         <!-- ko if: currentView() === "config" -->
         <div class="config-form">
             <h1>Configuration</h1>
+            <div class="form-group theme-toggle-group">
+                <label for="themeToggle">Dark Mode</label>
+                <input id="themeToggle" type="checkbox" role="switch"
+                       data-bind="checked: darkMode, attr: { 'aria-checked': darkMode() ? 'true' : 'false' }"
+                       title="Toggle between dark and light themes.">
+            </div>
             <div class="form-group">
                 <label for="numCardsPerHand">Cards per Hand</label>
                 <input id="numCardsPerHand" type="number" min="1" data-bind="value: numCardsPerHand"
@@ -144,7 +153,7 @@
         </div>
         <!-- /ko -->
     </main>
-    <!-- Third-party libraries: jQuery 3.7.1 (MIT), Knockout JS 3.5.1 (MIT) -->
+    <!-- Third-party libraries: jQuery 3.7.1 (MIT), Knockout JS 3.5.1 (MIT), VT323 font (OFL 1.1) -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>

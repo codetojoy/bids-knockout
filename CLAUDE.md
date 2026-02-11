@@ -60,7 +60,7 @@ Four skills are defined in `.claude/skills/` and should be consulted for relevan
 
 ## Current Status
 
-Phases 1-12 are complete. See `docs/Spec.md` for the full phase list.
+Phases 1-13 are complete. See `docs/Spec.md` for the full phase list.
 
 ### What's Done
 
@@ -72,10 +72,10 @@ Phases 1-12 are complete. See `docs/Spec.md` for the full phase list.
 - **Phase 10** (Reveal/Hide): Kitty and opponent cards hidden by default (solid dark face-down); Reveal/Hide toggle button with dynamic text and ARIA label; prize card and human hand always visible; state resets on new game
 - **Phase 11** (Player Strategies): Four strategy functions (`selectBidMax`, `selectBidMin`, `selectBidRandom`, `selectBidNearest`) with `selectBid` dispatcher; default assignments Mozart=Max, Chopin=Min, Brahms=Nearest; 15 new Jasmine specs
 - **Phase 12** (Strategy UI & Favicon): SVG favicon; strategy label in game UI (e.g. "Mozart (Max)"); config dropdowns for strategy assignment per opponent; `strategy` observable on opponent objects
+- **Phase 13** (Theming): CSS custom properties (`:root` light, `[data-theme="dark"]` overrides); dark/light theme toggle with `prefers-color-scheme` detection and `localStorage` persistence; VT323 pixel font; CRT text-shadow glow and scanline overlay; retro color palettes (muted cream light, green-phosphor dark)
 
 ### What Remains
 
-- **Phase TBA**: CSS custom properties, dark/light theme, 1980s retro aesthetic
 - **Phase TBA**: Playwright E2E tests
 
 ## Hooks

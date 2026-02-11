@@ -129,11 +129,11 @@ See @docs/GameRules.md for the rules and example of the game.
 * COMPLETE: Alter main game UI so that automated players display the current strategy type being used. e.g. "Mozart (Max)" and "Chopin (Min)".
 * COMPLETE: Alter config UI so that there are select dropdowns for strategy types, and user can assign strategy type to each automated player.
 
-### Phase TBA: TODO list (Theming)
+### Phase 13: TODO list (Theming)
 
-* refactor hardcoded colors to CSS custom properties
-* add dark/light theme support with `prefers-color-scheme` and a manual toggle
-* apply 1980s retro aesthetic: pixel/monospace fonts, CRT glow effects, retro color palette
+* COMPLETE: refactor hardcoded colors to CSS custom properties
+* COMPLETE: in Config screen, add dark/light theme support with `prefers-color-scheme` and a manual toggle
+* COMPLETE: apply 1980s retro aesthetic: pixel/monospace fonts, CRT glow effects, retro color palette
 
 ### Phase TBD: TODO list (Game Features)
 

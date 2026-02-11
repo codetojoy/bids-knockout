@@ -14,6 +14,97 @@
  * limitations under the License.
  */
 
+:root {
+    --font-family: 'VT323', 'Courier New', Courier, monospace;
+    --font-size-base: 1.1em;
+
+    --color-bg-page: #e8e0d0;
+    --color-text-primary: #1a1a2e;
+    --color-bg-nav: #2c2c54;
+    --color-text-nav-title: #d4e4bc;
+    --color-bg-nav-btn: #474787;
+    --color-bg-nav-btn-hover: #6a5acd;
+    --color-text-btn: #fff;
+    --color-bg-card: #d4e4bc;
+    --color-border-card: #2c2c54;
+    --color-text-card: #2c2c54;
+    --color-bg-card-hidden: #2c2c54;
+    --color-border-card-hidden: #1a1a2e;
+    --color-border-card-clickable: #474787;
+    --color-border-card-clickable-hover: #3d3d6b;
+    --color-bg-card-clickable-hover: #c8d8ac;
+    --color-bg-prize-area: #fdf2e9;
+    --color-border-prize-area: #e67e22;
+    --color-bg-prize-card: #fdebd0;
+    --color-border-prize-card: #e67e22;
+    --color-text-placeholder: #777;
+    --color-bg-human: #c8e6c9;
+    --color-border-human: #27ae60;
+    --color-bg-opponent: #d6e4f0;
+    --color-bg-save-btn: #27ae60;
+    --color-bg-save-btn-hover: #2ecc71;
+    --color-bg-go-btn: #6c3483;
+    --color-bg-go-btn-hover: #8e44ad;
+    --color-error: #c0392b;
+    --color-text-points: #555;
+    --color-border-input: #999;
+    --color-bg-round-result: #c8e6c9;
+    --color-border-round-result: #27ae60;
+    --color-bg-game-over: #fdebd0;
+    --color-border-game-over: #e67e22;
+    --color-text-winner: #d35400;
+    --color-text-bid-prompt: #6c3483;
+    --color-border-config-separator: #ccc;
+    --color-focus-outline: #474787;
+    --glow-heading: none;
+    --glow-card: none;
+    --scanline-bg: none;
+}
+
+[data-theme="dark"] {
+    --color-bg-page: #0a0a1a;
+    --color-text-primary: #33ff33;
+    --color-bg-nav: #0d0d2b;
+    --color-text-nav-title: #33ff33;
+    --color-bg-nav-btn: #1a1a3e;
+    --color-bg-nav-btn-hover: #2a2a5e;
+    --color-text-btn: #33ff33;
+    --color-bg-card: #0d1f0d;
+    --color-border-card: #33ff33;
+    --color-text-card: #33ff33;
+    --color-bg-card-hidden: #0a0a1a;
+    --color-border-card-hidden: #1a3a1a;
+    --color-border-card-clickable: #00cc00;
+    --color-border-card-clickable-hover: #66ff66;
+    --color-bg-card-clickable-hover: #1a2f1a;
+    --color-bg-prize-area: #1a1a00;
+    --color-border-prize-area: #ffaa00;
+    --color-bg-prize-card: #2a2a00;
+    --color-border-prize-card: #ffaa00;
+    --color-text-placeholder: #666;
+    --color-bg-human: #0d1f0d;
+    --color-border-human: #00cc00;
+    --color-bg-opponent: #0d0d2b;
+    --color-bg-save-btn: #006600;
+    --color-bg-save-btn-hover: #009900;
+    --color-bg-go-btn: #660066;
+    --color-bg-go-btn-hover: #990099;
+    --color-error: #ff4444;
+    --color-text-points: #88cc88;
+    --color-border-input: #33ff33;
+    --color-bg-round-result: #0d1f0d;
+    --color-border-round-result: #00cc00;
+    --color-bg-game-over: #1a1a00;
+    --color-border-game-over: #ffaa00;
+    --color-text-winner: #ffaa00;
+    --color-text-bid-prompt: #cc66ff;
+    --color-border-config-separator: #1a3a1a;
+    --color-focus-outline: #33ff33;
+    --glow-heading: none;
+    --glow-card: none;
+    --scanline-bg: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -21,16 +112,18 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    letter-spacing: 0.5px;
     display: flex;
     min-height: 100vh;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
 }
 
 nav {
     width: 200px;
-    background-color: #2c3e50;
+    background-color: var(--color-bg-nav);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -38,7 +131,7 @@ nav {
 }
 
 nav h2 {
-    color: #ecf0f1;
+    color: var(--color-text-nav-title);
     font-size: 1.2em;
     margin-bottom: 10px;
     text-align: center;
@@ -47,15 +140,16 @@ nav h2 {
 nav button {
     padding: 10px 16px;
     font-size: 1em;
-    color: #fff;
-    background-color: #2980b9;
+    color: var(--color-text-btn);
+    background-color: var(--color-bg-nav-btn);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: var(--font-family);
 }
 
 nav button:hover {
-    background-color: #3498db;
+    background-color: var(--color-bg-nav-btn-hover);
 }
 
 main {
@@ -92,18 +186,21 @@ main h1 {
 .form-group select {
     padding: 8px;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-border-input);
     border-radius: 4px;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
 }
 
 .opponent-config {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border-config-separator);
     padding-bottom: 12px;
     margin-bottom: 12px;
 }
 
 .validation-error {
-    color: #c0392b;
+    color: var(--color-error);
     font-weight: bold;
     margin-bottom: 12px;
 }
@@ -111,15 +208,16 @@ main h1 {
 .save-btn {
     padding: 10px 24px;
     font-size: 1em;
-    color: #fff;
-    background-color: #27ae60;
+    color: var(--color-text-btn);
+    background-color: var(--color-bg-save-btn);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: var(--font-family);
 }
 
 .save-btn:hover {
-    background-color: #2ecc71;
+    background-color: var(--color-bg-save-btn-hover);
 }
 
 .game-board {
@@ -146,46 +244,47 @@ main h1 {
     height: 64px;
     font-size: 1.2em;
     font-weight: bold;
-    border: 2px solid #2c3e50;
+    border: 2px solid var(--color-border-card);
     border-radius: 6px;
-    background-color: #ecf0f1;
-    color: #2c3e50;
+    background-color: var(--color-bg-card);
+    color: var(--color-text-card);
     cursor: default;
+    font-family: var(--font-family);
 }
 
 .card-btn.hidden-card {
-    background-color: #2c3e50;
-    color: #2c3e50;
-    border-color: #1a252f;
+    background-color: var(--color-bg-card-hidden);
+    color: var(--color-bg-card-hidden);
+    border-color: var(--color-border-card-hidden);
 }
 
 .prize-area {
     padding: 12px;
-    background-color: #fdf2e9;
-    border: 2px dashed #e67e22;
+    background-color: var(--color-bg-prize-area);
+    border: 2px dashed var(--color-border-prize-area);
     border-radius: 6px;
 }
 
 .prize-card {
-    border-color: #e67e22;
-    background-color: #fdebd0;
+    border-color: var(--color-border-prize-card);
+    background-color: var(--color-bg-prize-card);
 }
 
 .prize-placeholder {
-    color: #999;
+    color: var(--color-text-placeholder);
     font-style: italic;
 }
 
 .player-section {
     padding: 10px;
-    background-color: #eaf2f8;
+    background-color: var(--color-bg-opponent);
     border-radius: 6px;
 }
 
 .human-section {
     padding: 10px;
-    background-color: #d5f5e3;
-    border: 2px solid #27ae60;
+    background-color: var(--color-bg-human);
+    border: 2px solid var(--color-border-human);
     border-radius: 6px;
 }
 
@@ -194,38 +293,39 @@ main h1 {
     padding: 10px 32px;
     font-size: 1.1em;
     font-weight: bold;
-    color: #fff;
-    background-color: #8e44ad;
+    color: var(--color-text-btn);
+    background-color: var(--color-bg-go-btn);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: var(--font-family);
 }
 
 .go-btn:hover {
-    background-color: #9b59b6;
+    background-color: var(--color-bg-go-btn-hover);
 }
 
 .card-btn.clickable {
     cursor: pointer;
-    border-color: #2980b9;
+    border-color: var(--color-border-card-clickable);
 }
 
 .card-btn.clickable:hover {
-    background-color: #d4e6f1;
-    border-color: #2471a3;
+    background-color: var(--color-bg-card-clickable-hover);
+    border-color: var(--color-border-card-clickable-hover);
 }
 
 .points {
     font-size: 0.85em;
     font-weight: normal;
-    color: #666;
+    color: var(--color-text-points);
 }
 
 .round-result {
     margin-top: 16px;
     padding: 12px;
-    background-color: #d5f5e3;
-    border: 2px solid #27ae60;
+    background-color: var(--color-bg-round-result);
+    border: 2px solid var(--color-border-round-result);
     border-radius: 6px;
     font-weight: bold;
 }
@@ -233,8 +333,8 @@ main h1 {
 .game-over {
     margin-top: 16px;
     padding: 16px;
-    background-color: #fdebd0;
-    border: 2px solid #e67e22;
+    background-color: var(--color-bg-game-over);
+    border: 2px solid var(--color-border-game-over);
     border-radius: 6px;
 }
 
@@ -251,7 +351,7 @@ main h1 {
 .winner-announcement {
     font-size: 1.1em;
     font-weight: bold;
-    color: #d35400;
+    color: var(--color-text-winner);
 }
 
 .standing-row {
@@ -265,14 +365,61 @@ main h1 {
 .bid-prompt {
     display: inline-block;
     margin-top: 12px;
-    color: #8e44ad;
+    color: var(--color-text-bid-prompt);
     font-style: italic;
     font-weight: bold;
 }
 
 :focus-visible {
-    outline: 3px solid #2980b9;
+    outline: 3px solid var(--color-focus-outline);
     outline-offset: 2px;
+}
+
+/* --- CRT glow and scanline effects --- */
+
+nav h2,
+main h1,
+.game-section h2,
+.game-over h2,
+.winner-announcement {
+    text-shadow: var(--glow-heading);
+}
+
+.card-btn {
+    text-shadow: var(--glow-card);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: var(--scanline-bg);
+}
+
+/* --- Theme toggle --- */
+
+.theme-toggle-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border-config-separator);
+}
+
+.theme-toggle-group label {
+    margin-bottom: 0;
+}
+
+.theme-toggle-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-bg-go-btn);
+    cursor: pointer;
 }
 
 /* --- Responsive: tablet and below --- */
