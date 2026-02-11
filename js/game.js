@@ -43,9 +43,46 @@ function dealCards(deck, numPlayers) {
     return { hands: hands, kitty: kitty };
 }
 
-function selectBid(hand) {
+function selectBidMax(hand) {
+    return Math.max.apply(null, hand);
+}
+
+function selectBidMin(hand) {
+    return Math.min.apply(null, hand);
+}
+
+function selectBidRandom(hand) {
     const index = Math.floor(Math.random() * hand.length);
     return hand[index];
+}
+
+function selectBidNearest(hand, prizeCard) {
+    let nearest = hand[0];
+    let minDiff = Math.abs(hand[0] - prizeCard);
+    for (let i = 1; i < hand.length; i++) {
+        const diff = Math.abs(hand[i] - prizeCard);
+        if (diff < minDiff || (diff === minDiff && hand[i] < nearest)) {
+            nearest = hand[i];
+            minDiff = diff;
+        }
+    }
+    return nearest;
+}
+
+function selectBid(hand, strategy, prizeCard) {
+    if (!strategy) {
+        // guard
+        strategy = "random";
+    }
+    console.log("TRACER selectBid: strategy=" + strategy + " prizeCard=" + prizeCard +
+        " hand=" + JSON.stringify(hand));
+    switch (strategy) {
+        case "max": return selectBidMax(hand);
+        case "min": return selectBidMin(hand);
+        case "nearest": return selectBidNearest(hand, prizeCard);
+        case "random":
+        default: return selectBidRandom(hand);
+    }
 }
 
 function validateGameConfig(numCardsPerHand, numOpponents) {

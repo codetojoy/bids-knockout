@@ -60,21 +60,21 @@ Four skills are defined in `.claude/skills/` and should be consulted for relevan
 
 ## Current Status
 
-Phases 1-10 are complete. See `docs/Spec.md` for the full phase list.
+Phases 1-11 are complete. See `docs/Spec.md` for the full phase list.
 
 ### What's Done
 
 - **Phase 5** (Compliance): Copyright headers, SRI hashes, third-party attribution, tooltips, `:focus-visible`, broken link fix
-- **Phase 6** (Testing): Jasmine test suite (19 specs), `validateGameConfig()` extracted to `game.js` to eliminate DRY violation, `docs/Test.md`
+- **Phase 6** (Testing): Jasmine test suite (34 specs), `validateGameConfig()` extracted to `game.js` to eliminate DRY violation, `docs/Test.md`
 - **Phase 7** (Config Refactoring): Config form uses "cards per hand" instead of "cards in deck"; deck size computed automatically; default 3 opponents (Mozart, Chopin, Brahms)
 - **Phase 8** (Accessibility & Responsiveness): ARIA attributes (`aria-label`, `aria-live`, `role="alert"`), responsive CSS breakpoints (768px, 480px)
 - **Phase 9** (Game Play): Game-over screen declares winner with points and rounds won; final standings for all players sorted by points; `roundsWon` tracking added to player objects
 - **Phase 10** (Reveal/Hide): Kitty and opponent cards hidden by default (solid dark face-down); Reveal/Hide toggle button with dynamic text and ARIA label; prize card and human hand always visible; state resets on new game
+- **Phase 11** (Player Strategies): Four strategy functions (`selectBidMax`, `selectBidMin`, `selectBidRandom`, `selectBidNearest`) with `selectBid` dispatcher; default assignments Mozart=Max, Chopin=Min, Brahms=Nearest; 15 new Jasmine specs
 
 ### What Remains
 
 - **Phase TBA**: CSS custom properties, dark/light theme, 1980s retro aesthetic
-- **Phase TBD**: Remaining AI strategies (max, min, nearest)
 - **Phase TBA**: Playwright E2E tests
 
 ## Hooks

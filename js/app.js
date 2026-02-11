@@ -37,6 +37,7 @@ function BidsViewModel() {
     });
 
     const defaultNames = ["Mozart", "Chopin", "Brahms"];
+    const defaultStrategies = ["max", "min", "nearest"];
 
     function buildOpponents(count) {
         const current = self.opponents();
@@ -102,12 +103,14 @@ function BidsViewModel() {
         const opponentList = [];
         for (let i = 1; i < players; i++) {
             const name = self.opponents()[i - 1] ? self.opponents()[i - 1].name() : ("Opponent " + i);
+            const strategy = defaultStrategies[i - 1] || "random";
             opponentList.push({
                 name: name,
                 hand: ko.observableArray(deal.hands[i]),
                 points: ko.observable(0),
                 roundsWon: ko.observable(0),
-                isHuman: false
+                isHuman: false,
+                strategy: strategy
             });
         }
         self.gamePlayers(opponentList);
@@ -115,7 +118,7 @@ function BidsViewModel() {
         const allPlayers = [human].concat(opponentList);
         console.log("TRACER newGame: kitty=" + JSON.stringify(deal.kitty) +
             " players=" + JSON.stringify(allPlayers.map(function (p) {
-                return { name: p.name, hand: p.hand() };
+                return { name: p.name, hand: p.hand(), strategy: p.strategy || "human" };
             })));
 
         self.currentView("game");
@@ -156,7 +159,7 @@ function BidsViewModel() {
         bids.push({ playerIndex: 0, card: card });
 
         opponents.forEach(function (player, i) {
-            const aiCard = selectBid(player.hand());
+            const aiCard = selectBid(player.hand(), player.strategy, prize);
             bids.push({ playerIndex: i + 1, card: aiCard });
         });
 

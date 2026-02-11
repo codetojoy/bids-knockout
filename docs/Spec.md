@@ -109,6 +109,20 @@ See @docs/GameRules.md for the rules and example of the game.
 * COMPLETE: If Reveal button is clicked, then display all card values and change the Reveal button text to "Hide".
 * COMPLETE: If Reveal button is in Hide mode and clicked, then hide card values according to the original rule above (kitty, hands of automated players).
 
+### Phase 11: TODO list
+
+* COMPLETE: Implement player strategies:
+    * Max: play maximum card in hand
+    * Min: play minimum card in hand
+    * Random: play random card from hand
+    * Nearest: play nearest card (to prize card) in hand
+* COMPLETE: Alter game state so that automated players are assigned a strategy (fixed for now).
+* COMPLETE: By default, use these assignments:
+    * Mozart uses Max strategy
+    * Chopin uses Min strategy
+    * Brahms uses Nearest strategy
+* COMPLETE: Create Jasmine tests to verify/confirm each strategy type
+
 ### Phase TBA: TODO list (Theming)
 
 * refactor hardcoded colors to CSS custom properties
@@ -117,8 +131,8 @@ See @docs/GameRules.md for the rules and example of the game.
 
 ### Phase TBD: TODO list (Game Features)
 
-* implement remaining AI strategies: max, min, nearest
-* implement the `reveal()` function
+* COMPLETE: implement remaining AI strategies: max, min, nearest
+* COMPLETE: implement the `reveal()` function
 
 ### Phase TBA: TODO list (E2E Tests)
 

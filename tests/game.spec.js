@@ -122,6 +122,151 @@ describe("selectBid", function () {
     });
 });
 
+describe("selectBidMax", function () {
+    it("should return the maximum card in the hand", function () {
+        const hand = [3, 7, 12, 1];
+
+        // test
+        const bid = selectBidMax(hand);
+
+        expect(bid).toBe(12);
+    });
+
+    it("should return the only card when hand has one card", function () {
+        const hand = [5];
+
+        // test
+        const bid = selectBidMax(hand);
+
+        expect(bid).toBe(5);
+    });
+});
+
+describe("selectBidMin", function () {
+    it("should return the minimum card in the hand", function () {
+        const hand = [3, 7, 12, 1];
+
+        // test
+        const bid = selectBidMin(hand);
+
+        expect(bid).toBe(1);
+    });
+
+    it("should return the only card when hand has one card", function () {
+        const hand = [5];
+
+        // test
+        const bid = selectBidMin(hand);
+
+        expect(bid).toBe(5);
+    });
+});
+
+describe("selectBidRandom", function () {
+    it("should return a card that exists in the hand", function () {
+        const hand = [3, 7, 12];
+
+        // test
+        const bid = selectBidRandom(hand);
+
+        expect(hand).toContain(bid);
+    });
+
+    it("should return the only card when hand has one card", function () {
+        const hand = [5];
+
+        // test
+        const bid = selectBidRandom(hand);
+
+        expect(bid).toBe(5);
+    });
+});
+
+describe("selectBidNearest", function () {
+    it("should return the card nearest to the prize card", function () {
+        const hand = [1, 5, 10];
+
+        // test
+        const bid = selectBidNearest(hand, 6);
+
+        expect(bid).toBe(5);
+    });
+
+    it("should return exact match when prize card value is in hand", function () {
+        const hand = [2, 5, 8];
+
+        // test
+        const bid = selectBidNearest(hand, 5);
+
+        expect(bid).toBe(5);
+    });
+
+    it("should return lower card when two cards are equidistant", function () {
+        const hand = [3, 7];
+
+        // test
+        const bid = selectBidNearest(hand, 5);
+
+        expect(bid).toBe(3);
+    });
+
+    it("should return the only card when hand has one card", function () {
+        const hand = [5];
+
+        // test
+        const bid = selectBidNearest(hand, 10);
+
+        expect(bid).toBe(5);
+    });
+});
+
+describe("selectBid with strategy", function () {
+    it("should use max strategy when specified", function () {
+        const hand = [3, 7, 12];
+
+        // test
+        const bid = selectBid(hand, "max");
+
+        expect(bid).toBe(12);
+    });
+
+    it("should use min strategy when specified", function () {
+        const hand = [3, 7, 12];
+
+        // test
+        const bid = selectBid(hand, "min");
+
+        expect(bid).toBe(3);
+    });
+
+    it("should use nearest strategy when specified", function () {
+        const hand = [1, 5, 10];
+
+        // test
+        const bid = selectBid(hand, "nearest", 6);
+
+        expect(bid).toBe(5);
+    });
+
+    it("should use random strategy when no strategy provided", function () {
+        const hand = [3, 7, 12];
+
+        // test
+        const bid = selectBid(hand);
+
+        expect(hand).toContain(bid);
+    });
+
+    it("should use random strategy for unknown strategy string", function () {
+        const hand = [3, 7, 12];
+
+        // test
+        const bid = selectBid(hand, "unknown_strategy");
+
+        expect(hand).toContain(bid);
+    });
+});
+
 describe("evaluateRound", function () {
     it("should return the index of the highest bid", function () {
         const bids = [
