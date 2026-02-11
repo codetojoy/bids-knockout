@@ -123,6 +123,12 @@ See @docs/GameRules.md for the rules and example of the game.
     * Brahms uses Nearest strategy
 * COMPLETE: Create Jasmine tests to verify/confirm each strategy type
 
+### Phase 12: TODO list
+
+* COMPLETE: Generate a generic favicon.
+* COMPLETE: Alter main game UI so that automated players display the current strategy type being used. e.g. "Mozart (Max)" and "Chopin (Min)".
+* COMPLETE: Alter config UI so that there are select dropdowns for strategy types, and user can assign strategy type to each automated player.
+
 ### Phase TBA: TODO list (Theming)
 
 * refactor hardcoded colors to CSS custom properties

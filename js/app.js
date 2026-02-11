@@ -38,13 +38,15 @@ function BidsViewModel() {
 
     const defaultNames = ["Mozart", "Chopin", "Brahms"];
     const defaultStrategies = ["max", "min", "nearest"];
+    self.availableStrategies = ["max", "min", "nearest", "random"];
 
     function buildOpponents(count) {
         const current = self.opponents();
         if (count > current.length) {
             for (let i = current.length; i < count; i++) {
                 const defaultName = defaultNames[i] || ("Opponent " + (i + 1));
-                self.opponents.push({ name: ko.observable(defaultName) });
+                const defaultStrategy = defaultStrategies[i] || "random";
+                self.opponents.push({ name: ko.observable(defaultName), strategy: ko.observable(defaultStrategy) });
             }
         } else if (count < current.length) {
             self.opponents.splice(count);
@@ -102,10 +104,12 @@ function BidsViewModel() {
 
         const opponentList = [];
         for (let i = 1; i < players; i++) {
-            const name = self.opponents()[i - 1] ? self.opponents()[i - 1].name() : ("Opponent " + i);
-            const strategy = defaultStrategies[i - 1] || "random";
+            const opponent = self.opponents()[i - 1];
+            const name = opponent ? opponent.name() : ("Opponent " + i);
+            const strategy = opponent ? opponent.strategy() : "random";
+            const displayName = name + " (" + strategy.charAt(0).toUpperCase() + strategy.slice(1) + ")";
             opponentList.push({
-                name: name,
+                name: displayName,
                 hand: ko.observableArray(deal.hands[i]),
                 points: ko.observable(0),
                 roundsWon: ko.observable(0),
@@ -221,9 +225,9 @@ function BidsViewModel() {
             return;
         }
 
-        const opponentNames = self.opponents().map(function (p) { return p.name(); });
+        const opponentInfo = self.opponents().map(function (p) { return { name: p.name(), strategy: p.strategy() }; });
         console.log("TRACER config saved: numCardsPerHand=" + self.numCardsPerHand() +
-            " numOpponents=" + self.numOpponents() + " opponents=" + JSON.stringify(opponentNames));
+            " numOpponents=" + self.numOpponents() + " opponents=" + JSON.stringify(opponentInfo));
 
         self.validationError("");
         self.currentView("main");

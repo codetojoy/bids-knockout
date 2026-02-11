@@ -60,7 +60,7 @@ Four skills are defined in `.claude/skills/` and should be consulted for relevan
 
 ## Current Status
 
-Phases 1-11 are complete. See `docs/Spec.md` for the full phase list.
+Phases 1-12 are complete. See `docs/Spec.md` for the full phase list.
 
 ### What's Done
 
@@ -71,6 +71,7 @@ Phases 1-11 are complete. See `docs/Spec.md` for the full phase list.
 - **Phase 9** (Game Play): Game-over screen declares winner with points and rounds won; final standings for all players sorted by points; `roundsWon` tracking added to player objects
 - **Phase 10** (Reveal/Hide): Kitty and opponent cards hidden by default (solid dark face-down); Reveal/Hide toggle button with dynamic text and ARIA label; prize card and human hand always visible; state resets on new game
 - **Phase 11** (Player Strategies): Four strategy functions (`selectBidMax`, `selectBidMin`, `selectBidRandom`, `selectBidNearest`) with `selectBid` dispatcher; default assignments Mozart=Max, Chopin=Min, Brahms=Nearest; 15 new Jasmine specs
+- **Phase 12** (Strategy UI & Favicon): SVG favicon; strategy label in game UI (e.g. "Mozart (Max)"); config dropdowns for strategy assignment per opponent; `strategy` observable on opponent objects
 
 ### What Remains
 
