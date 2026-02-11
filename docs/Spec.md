@@ -139,6 +139,7 @@ See @docs/GameRules.md for the rules and example of the game.
 
 * COMPLETE: implement remaining AI strategies: max, min, nearest
 * COMPLETE: implement the `reveal()` function
+* Implement "Sniper" strategy: a hybrid that uses Nearest for prize cards above N/2 and Min for prize cards below N/2 (where N is deck size). Add to `availableStrategies`, with Jasmine tests.
 
 ### Phase TBA: TODO list (E2E Tests)
 
